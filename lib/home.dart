@@ -46,9 +46,10 @@ class _HomeState extends State<Home> {
         return ClipRRect(
             borderRadius: BorderRadius.circular(10),
             child: Column(
-              children: [
+              children: <Widget>[
+                Text(pokemons[index]['name']),
                 SvgPicture.network(pokemons[index]['sprites']['other']
-                    ['dream_world']['front_default'])
+                    ['dream_world']['front_default']),
               ],
             ));
       },
@@ -59,7 +60,8 @@ class _HomeState extends State<Home> {
   }
 
   void fetchPokemonData() async {
-    var url = Uri.parse('https://pokeapi.co/api/v2/pokemon/?limit=151&offset=3');
+    var url =
+        Uri.parse('https://pokeapi.co/api/v2/pokemon/?limit=151&offset=3');
     var owo = await http.get(url).then((value) {
       if (value.statusCode == 200) {
         var data = jsonDecode(value.body);
